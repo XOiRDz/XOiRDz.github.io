@@ -11,6 +11,7 @@ export default function App() {
   const [transitioning, setTransitioning] = useState(false);
   const [slideDir, setSlideDir] = useState("left");
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
+  const [projectCategory, setProjectCategory] = useState("games");
 
   useEffect(() => {
     const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
@@ -18,8 +19,9 @@ export default function App() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const navigateTo = (page) => {
+  const navigateTo = (page, category = null) => {
     if (page === currentPage || transitioning) return;
+    if (category) setProjectCategory(category);
     const fromIndex = PAGES.indexOf(currentPage);
     const toIndex = PAGES.indexOf(page);
     setSlideDir(toIndex > fromIndex ? "left" : "right");
@@ -73,7 +75,7 @@ export default function App() {
           : "translateX(0)",
         transition: "opacity 0.4s ease, transform 0.4s ease",
       }}>
-        <PageComponent navigateTo={navigateTo} />
+        <PageComponent navigateTo={navigateTo} initialCategory={projectCategory} />
       </div>
 
       <style>{`
@@ -97,6 +99,14 @@ export default function App() {
         @keyframes pulse {
           0%,100% { box-shadow: 0 0 10px #00d4ff; }
           50% { box-shadow: 0 0 25px #00d4ff, 0 0 50px rgba(0,212,255,0.3); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>

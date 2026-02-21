@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 
 const PROJECT_CATEGORIES = [
   {
-    id: "3d",
-    label: "3D",
+    id: "games",
+    label: "Games",
     icon: "◈",
     desc: "Immersive 3D environments, simulations, and interactive worlds built in Unity and Blender.",
     count: "Projects",
@@ -303,7 +303,7 @@ export default function Home({ navigateTo }) {
           {PROJECT_CATEGORIES.map((cat, i) => (
             <AnimFadeUp key={cat.id} delay={i * 0.08}>
               <button
-                onClick={() => navigateTo("projects")}
+                onClick={() => navigateTo("projects", cat.id)}
                 onMouseEnter={() => setHovered(cat.id)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
