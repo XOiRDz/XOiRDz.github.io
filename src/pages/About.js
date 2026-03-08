@@ -101,6 +101,14 @@ export default function About() {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [hoveredSocial, setHoveredSocial] = useState(null);
   const [activeExp, setActiveExp] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div style={{ fontFamily: "'Courier New', monospace", color: "#e0f0ff", paddingTop: 80 }}>
@@ -136,10 +144,10 @@ export default function About() {
       </section>
 
       {/* ── EXPERIENCE TIMELINE ── */}
-      <section style={{ padding: "90px 10vw", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "90px 10vw", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
         <SectionHeader label="// career" title="Experience" />
 
-        <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 40 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "220px 1fr", gap: 40 }}>
           {/* Left: list */}
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {EXPERIENCES.map((exp, i) => (
@@ -212,9 +220,9 @@ export default function About() {
       </section>
 
       {/* ── SKILLS ── */}
-      <section style={{ padding: "90px 10vw", background: "rgba(0,212,255,0.015)", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "90px 10vw", background: "rgba(0,212,255,0.015)", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
         <SectionHeader label="// toolkit" title="Skills" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px,1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(200px, 100%), 1fr))", gap: 16 }}>
           {SKILLS_ALL.map((group, gi) => (
             <AnimFadeUp key={group.category} delay={gi * 0.07}>
               <div style={{
@@ -252,9 +260,9 @@ export default function About() {
       </section>
 
       {/* ── INTERESTS ── */}
-      <section style={{ padding: "90px 10vw", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "90px 10vw", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
         <SectionHeader label="// beyond work" title="Interests & Passions" />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px,1fr))", gap: 2 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))", gap: 2 }}>
           {INTERESTS.map((item, i) => (
             <AnimFadeUp key={item.label} delay={i * 0.07}>
               <div style={{
@@ -272,7 +280,7 @@ export default function About() {
       </section>
 
       {/* ── EDUCATION ── */}
-      <section style={{ padding: "90px 10vw", background: "rgba(0,212,255,0.015)", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "90px 10vw", background: "rgba(0,212,255,0.015)", borderBottom: "1px solid rgba(0,212,255,0.08)" }}>
         <SectionHeader label="// background" title="Education" />
         <AnimFadeUp>
           <div style={{
@@ -302,12 +310,12 @@ export default function About() {
       </section>
 
       {/* ── CONNECT / SOCIAL ── */}
-      <section style={{ padding: "90px 10vw" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "90px 10vw" }}>
         <SectionHeader label="// find me" title="Let's Connect" />
         <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 14, lineHeight: 1.8, marginBottom: 40, maxWidth: 500 }}>
           Whether you want to collaborate on a project, book a workshop, or just say hi — reach out through any of the channels below.
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px,1fr))", gap: 2 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))", gap: 2 }}>
           {SOCIALS.map((s, i) => (
             <AnimFadeUp key={s.label} delay={i * 0.07}>
               <a

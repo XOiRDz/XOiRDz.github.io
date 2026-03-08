@@ -87,6 +87,14 @@ function AnimFadeUp({ children, delay = 0, style = {} }) {
 export default function Home({ navigateTo }) {
   const typed = useTypewriter("Unity Dev · AR/VR Creator · Workshop Instructor");
   const [hovered, setHovered] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div style={{ fontFamily: "'Courier New', monospace", color: "#e0f0ff", paddingTop: 80 }}>
@@ -97,7 +105,7 @@ export default function Home({ navigateTo }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "0 10vw",
+        padding: isMobile ? "0 5vw" : "0 10vw",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -210,7 +218,8 @@ export default function Home({ navigateTo }) {
         {/* Floating stats — right side */}
         <div style={{
           position: "absolute", right: "8vw", bottom: "14vh",
-          display: "flex", flexDirection: "column", gap: 28, zIndex: 2,
+          display: isMobile ? "none" : "flex", 
+          flexDirection: "column", gap: 28, zIndex: 2,
         }}>
           {[
             { num: "5+", label: "Years Exp" },
@@ -236,11 +245,11 @@ export default function Home({ navigateTo }) {
       </section>
 
       {/* ── SUMMARY ── */}
-      <section style={{ padding: "100px 10vw", background: "rgba(0,212,255,0.02)", borderTop: "1px solid rgba(0,212,255,0.08)" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "100px 10vw", background: "rgba(0,212,255,0.02)", borderTop: "1px solid rgba(0,212,255,0.08)" }}>
         <AnimFadeUp>
           <div style={{ fontSize: 10, letterSpacing: 6, color: "#00d4ff", textTransform: "uppercase", marginBottom: 8 }}>// who i am</div>
           <div style={{ width: 50, height: 2, background: "#00d4ff", boxShadow: "0 0 10px #00d4ff", marginBottom: 32 }} />
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 80, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 40 : 80, alignItems: "start" }}>
             <div>
               <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 900, marginBottom: 24, lineHeight: 1.1 }}>
                 Creative developer<br />
@@ -281,6 +290,8 @@ export default function Home({ navigateTo }) {
                   display: "flex", justifyContent: "space-between",
                   padding: "14px 0",
                   borderBottom: "1px solid rgba(0,212,255,0.08)",
+                  flexDirection: isMobile ? "column" : "row",
+                  gap: isMobile ? 4 : 0,
                 }}>
                   <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", letterSpacing: 2, textTransform: "uppercase" }}>{item.label}</span>
                   <span style={{ fontSize: 13, color: "rgba(255,255,255,0.8)" }}>{item.value}</span>
@@ -292,14 +303,14 @@ export default function Home({ navigateTo }) {
       </section>
 
       {/* ── PROJECT CATEGORIES ── */}
-      <section style={{ padding: "100px 10vw" }}>
+      <section style={{ padding: isMobile ? "80px 5vw" : "100px 10vw" }}>
         <AnimFadeUp>
           <div style={{ fontSize: 10, letterSpacing: 6, color: "#00d4ff", textTransform: "uppercase", marginBottom: 8 }}>// explore work</div>
           <div style={{ width: 50, height: 2, background: "#00d4ff", boxShadow: "0 0 10px #00d4ff", marginBottom: 16 }} />
           <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 900, marginBottom: 56, lineHeight: 1.1 }}>Projects</h2>
         </AnimFadeUp>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 2 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))", gap: 2 }}>
           {PROJECT_CATEGORIES.map((cat, i) => (
             <AnimFadeUp key={cat.id} delay={i * 0.08}>
               <button

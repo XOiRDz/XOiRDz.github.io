@@ -12,12 +12,21 @@ export default function App() {
   const [slideDir, setSlideDir] = useState("left");
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [projectCategory, setProjectCategory] = useState("games");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // Don't track mouse on mobile
     const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   const navigateTo = (page, category = null) => {
     if (page === currentPage || transitioning) return;
@@ -37,34 +46,38 @@ export default function App() {
   const PageComponent = pageMap[currentPage];
 
   return (
-    <div style={{ background: "#060810", minHeight: "100vh", overflowX: "hidden", cursor: "none" }}>
-      {/* Custom Cursor */}
-      <div style={{
-        position: "fixed",
-        width: 16,
-        height: 16,
-        borderRadius: "50%",
-        border: "2px solid #00d4ff",
-        pointerEvents: "none",
-        zIndex: 9999,
-        left: mousePos.x - 8,
-        top: mousePos.y - 8,
-        boxShadow: "0 0 12px #00d4ff",
-        transition: "transform 0.05s ease",
-        mixBlendMode: "screen",
-      }} />
-      <div style={{
-        position: "fixed",
-        width: 4,
-        height: 4,
-        borderRadius: "50%",
-        background: "#00d4ff",
-        pointerEvents: "none",
-        zIndex: 9999,
-        left: mousePos.x - 2,
-        top: mousePos.y - 2,
-        boxShadow: "0 0 6px #00d4ff",
-      }} />
+    <div style={{ background: "#060810", minHeight: "100vh", overflowX: "hidden", cursor: isMobile ? "auto" : "none" }}>
+      {/* Custom Cursor - Desktop Only */}
+      {!isMobile && (
+        <>
+          <div style={{
+            position: "fixed",
+            width: 16,
+            height: 16,
+            borderRadius: "50%",
+            border: "2px solid #00d4ff",
+            pointerEvents: "none",
+            zIndex: 9999,
+            left: mousePos.x - 8,
+            top: mousePos.y - 8,
+            boxShadow: "0 0 12px #00d4ff",
+            transition: "transform 0.05s ease",
+            mixBlendMode: "screen",
+          }} />
+          <div style={{
+            position: "fixed",
+            width: 4,
+            height: 4,
+            borderRadius: "50%",
+            background: "#00d4ff",
+            pointerEvents: "none",
+            zIndex: 9999,
+            left: mousePos.x - 2,
+            top: mousePos.y - 2,
+            boxShadow: "0 0 6px #00d4ff",
+          }} />
+        </>
+      )}
 
       <Navbar currentPage={currentPage} navigateTo={navigateTo} />
 
@@ -81,8 +94,8 @@ export default function App() {
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { cursor: none !important; }
-        a, button { cursor: none !important; }
+        body { cursor: ${isMobile ? "auto" : "none"} !important; }
+        a, button { cursor: ${isMobile ? "auto" : "none"} !important; }
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: #060810; }
         ::-webkit-scrollbar-thumb { background: #00d4ff; }

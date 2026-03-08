@@ -117,7 +117,7 @@ function ProjectCard({ project, index, setSelectedProject }) {
         border: `1px solid ${hovered ? "rgba(0,212,255,0.45)" : "rgba(0,212,255,0.1)"}`,
         overflow: "hidden",
         boxShadow: hovered ? "0 16px 48px rgba(0,212,255,0.1)" : "none",
-        cursor: "none",
+        cursor: "pointer",
       }}
     >
       {/* Image placeholder */}
@@ -192,6 +192,14 @@ export default function Projects({ initialCategory = "games" }) {
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Update category when initialCategory changes
   useEffect(() => {
@@ -232,7 +240,7 @@ export default function Projects({ initialCategory = "games" }) {
 
   return (
     <div style={{ fontFamily: "'Courier New', monospace", color: "#e0f0ff", paddingTop: 80, position: "relative" }}>
-      <section style={{ padding: "80px 10vw 100px" }}>
+      <section style={{ padding: isMobile ? "80px 5vw 60px" : "80px 10vw 100px" }}>
 
         {/* Header */}
         <div style={{
@@ -294,14 +302,19 @@ export default function Projects({ initialCategory = "games" }) {
           })}
         </div>
 
-        {/* Tag Filter Pills - Only show for Interactive category */}
-        {activeCategory === "interactive" && (
+        {/* Tag Filter Pills - Only show for Interactive category and hide on mobile */}
+        {activeCategory === "interactive" && !isMobile && (
           <div style={{ marginBottom: 40 }}>
             <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,255,255,0.3)", marginBottom: 12, textTransform: "uppercase" }}>
               Filter by tags:
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {ALL_TAGS.map((tag) => {
+            <div style={{ display: "flex", 
+            flexWrap: isMobile ? "nowrap" : "wrap", 
+            gap: 8,
+            overflowX: isMobile ? "auto" : "visible",
+            WebkitOverflowScrolling: "touch",
+          }}>
+            {ALL_TAGS.map((tag) => {
                 const isSelected = selectedTags.includes(tag);
                 return (
                   <button
@@ -378,7 +391,7 @@ export default function Projects({ initialCategory = "games" }) {
         {/* Grid */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(280px, 100%), 1fr))",
           gap: 16,
         }}>
           {filtered.map((project, i) => (
@@ -403,26 +416,67 @@ export default function Projects({ initialCategory = "games" }) {
 
       {/* ── PROJECT MODAL ── */}
       {selectedProject && createPortal(
-        <div
-          onClick={() => setSelectedProject(null)}
-          style={{
+        <>
+          {/* Custom Cursor for Modal */}
+          <div style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(6,8,16,0.95)",
-            backdropFilter: "blur(8px)",
-            zIndex: 10000,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            animation: "fadeIn 0.3s ease",
-            overflow: "hidden",
-            cursor: "auto"
-          }}
-        >
+            width: 16,
+            height: 16,
+            borderRadius: "50%",
+            border: "2px solid #00d4ff",
+            pointerEvents: "none",
+            zIndex: 10002,
+            left: -100,
+            top: -100,
+            boxShadow: "0 0 12px #00d4ff",
+            transition: "transform 0.05s ease",
+            mixBlendMode: "screen",
+          }} id="modal-cursor-ring" />
+          <div style={{
+            position: "fixed",
+            width: 4,
+            height: 4,
+            borderRadius: "50%",
+            background: "#00d4ff",
+            pointerEvents: "none",
+            zIndex: 10002,
+            left: -100,
+            top: -100,
+            boxShadow: "0 0 6px #00d4ff",
+          }} id="modal-cursor-dot" />
+          
+          <div
+            onClick={() => setSelectedProject(null)}
+            onMouseMove={(e) => {
+              const ring = document.getElementById('modal-cursor-ring');
+              const dot = document.getElementById('modal-cursor-dot');
+              if (ring) {
+                ring.style.left = (e.clientX - 8) + 'px';
+                ring.style.top = (e.clientY - 8) + 'px';
+              }
+              if (dot) {
+                dot.style.left = (e.clientX - 2) + 'px';
+                dot.style.top = (e.clientY - 2) + 'px';
+              }
+            }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(6,8,16,0.95)",
+              backdropFilter: "blur(8px)",
+              zIndex: 10000,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: isMobile ? "10px" : "20px",
+              animation: "fadeIn 0.3s ease",
+              overflow: "hidden",
+              cursor: "none",
+            }}
+          >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -469,7 +523,7 @@ export default function Projects({ initialCategory = "games" }) {
 
             {/* Media section */}
             <div style={{
-              height: 300,
+              height: isMobile ? 200 : 300,
               flexShrink: 0,
               background: "rgba(0,212,255,0.03)",
               borderBottom: "1px solid rgba(0,212,255,0.2)",
@@ -513,7 +567,7 @@ export default function Projects({ initialCategory = "games" }) {
             </div>
 
             {/* Content - Scrollable */}
-            <div style={{ padding: "40px 48px 48px", overflowY: "auto", flex: 1 }}>
+            <div style={{ padding: isMobile ? "24px 20px 28px" : "40px 48px 48px", overflowY: "auto", flex: 1 }}>
               {/* Meta */}
               <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
                 <span style={{
@@ -543,7 +597,7 @@ export default function Projects({ initialCategory = "games" }) {
               </div>
 
               {/* Title */}
-              <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 16, lineHeight: 1.2 }}>
+              <h2 style={{ fontSize: 32, color: "rgba(255,255,255,0.65)", fontWeight: 900, marginBottom: 16, lineHeight: 1.2 }}>
                 {selectedProject.title}
               </h2>
 
@@ -587,7 +641,8 @@ export default function Projects({ initialCategory = "games" }) {
               </div>
             </div>
           </div>
-        </div>,
+        </div>
+        </>,
         document.body
       )}
 
