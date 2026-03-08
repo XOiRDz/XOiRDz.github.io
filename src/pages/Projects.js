@@ -17,13 +17,13 @@ const ALL_TAGS = [
 
 const PROJECTS = [
   // ── GAMES ──
-  { id: 1, title: "Count up", category: "games", tags: [], year: "2020", desc: "Interactive counting game experience.", image: null, media: null, mediaType: "image" },
-  { id: 2, title: "Lost Player", category: "games", tags: [], year: "2020", desc: "Puzzle-based exploration game.", image: null, media: null, mediaType: "image" },
-  { id: 3, title: "My Journey to Mars", category: "games", tags: [], year: "2021", desc: "Space adventure game with exploration mechanics.", image: null, media: null, mediaType: "gif" },
-  { id: 4, title: "Space out", category: "games", tags: [], year: "2021", desc: "Space-themed arcade game.", image: null, media: null, mediaType: "gif" },
-  { id: 5, title: "Time Spacer", category: "games", tags: [], year: "2021", desc: "Time manipulation puzzle game.", image: null, media: null, mediaType: "gif" },
-  { id: 6, title: "Unalterable", category: "games", tags: [], year: "2021", desc: "Story-driven puzzle game with narrative mechanics.", image: null, media: null, mediaType: "gif" },
-  { id: 7, title: "Vortax", category: "games", tags: [], year: "2021", desc: "Fast-paced action game.", image: null, media: null, mediaType: "gif" },
+  { id: 1, title: "Count up", category: "games", tags: [], year: "2020", desc: "Mathematical game where you need to reach target in shortest time.", image: null, media: "/media/games/CountUp.gif", mediaType: "gif" },
+  { id: 2, title: "Lost Player", category: "games", tags: [], year: "2020", desc: "Fast running game with glitches as difficulty and challenege.", image: null, media: "/media/games/LostPlayer.gif", mediaType: "gif" },
+  { id: 3, title: "My Journey to Mars", category: "games", tags: [], year: "2021", desc: "Small Story game made while vision of future.", image: null, media: "/media/games/MJTM.gif", mediaType: "gif" },
+  { id: 4, title: "Space out", category: "games", tags: [], year: "2021", desc: "Protect the ship from incoming meteors.", image: null, media: "/media/games/SpaceOut.gif", mediaType: "gif" },
+  { id: 5, title: "Time Spacer", category: "games", tags: [], year: "2021", desc: "Time manipulation puzzle game.", image: null, media: "/media/games/TimeSpacer.gif", mediaType: "gif" },
+  { id: 6, title: "Unalterable", category: "games", tags: [], year: "2021", desc: "Puzzle game that requires finding clues/items to progress.", image: null, media: "/media/games/Unalterable.gif", mediaType: "gif" },
+  { id: 7, title: "Vortax", category: "games", tags: [], year: "2021", desc: "Game that speeds up with time to test player's quick response.", image: null, media: "/media/games/Vortax.gif", mediaType: "gif" },
   { id: 8, title: "15 Puzzle", category: "games", tags: [], year: "2020", desc: "Classic sliding puzzle game reimagined.", image: null, media: null, mediaType: "image" },
   { id: 9, title: "Al Taibeen Restaurant", category: "games", tags: [], year: "2022", desc: "Restaurant management simulation game.", image: null, media: null, mediaType: "gif" },
   { id: 10, title: "Gates of Avalon", category: "games", tags: [], year: "2022", desc: "Fantasy adventure game.", image: null, media: null, mediaType: "gif" },
@@ -482,7 +482,7 @@ export default function Projects({ initialCategory = "games" }) {
             style={{
               background: "#060810",
               border: "1px solid rgba(0,212,255,0.3)",
-              maxWidth: 900,
+              maxWidth: 1100,
               width: "100%",
               height: "90vh",
               display: "flex",
@@ -521,10 +521,10 @@ export default function Projects({ initialCategory = "games" }) {
               ×
             </button>
 
-            {/* Media section */}
+            {/* Media section - Dynamic height based on content */}
             <div style={{
-              height: isMobile ? 200 : 300,
-              flexShrink: 0,
+              flex: isMobile ? "0 0 40%" : "0 0 65%",
+              minHeight: isMobile ? 200 : 400,
               background: "rgba(0,212,255,0.03)",
               borderBottom: "1px solid rgba(0,212,255,0.2)",
               display: "flex",
@@ -566,8 +566,13 @@ export default function Projects({ initialCategory = "games" }) {
               )}
             </div>
 
-            {/* Content - Scrollable */}
-            <div style={{ padding: isMobile ? "24px 20px 28px" : "40px 48px 48px", overflowY: "auto", flex: 1 }}>
+            {/* Content - Takes remaining space, scrollable if needed */}
+            <div style={{ 
+              flex: 1, 
+              padding: isMobile ? "24px 20px 28px" : "32px 40px 40px", 
+              overflowY: "auto",
+              minHeight: 0,
+            }}>
               {/* Meta */}
               <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 20, flexWrap: "wrap" }}>
                 <span style={{
