@@ -177,7 +177,7 @@ export default function Home({ navigateTo }) {
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <button
-              onClick={() => navigateTo("projects", 0)}
+              onClick={() => navigateTo("projects", "ar")}
               style={{
                 padding: "14px 36px",
                 background: "#00d4ff",
