@@ -1,14 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 const PROJECT_CATEGORIES = [
-  {
-    id: "games",
-    label: "Games",
-    icon: "◈",
-    desc: "Immersive 3D environments, simulations, and interactive worlds built in Unity and Blender.",
-    count: "Projects",
-    color: "#00d4ff",
-  },
+  
   {
     id: "ar",
     label: "AR",
@@ -30,6 +23,14 @@ const PROJECT_CATEGORIES = [
     label: "Interactive Apps",
     icon: "◉",
     desc: "Hardware integrations, AI-powered apps, and real-time interactive installations.",
+    count: "Projects",
+    color: "#00d4ff",
+  },
+  {
+    id: "games",
+    label: "Games",
+    icon: "◈",
+    desc: "Immersive 3D environments, simulations, and interactive worlds built in Unity and Blender.",
     count: "Projects",
     color: "#00d4ff",
   },
@@ -176,7 +177,7 @@ export default function Home({ navigateTo }) {
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <button
-              onClick={() => navigateTo("projects")}
+              onClick={() => navigateTo("projects", 0)}
               style={{
                 padding: "14px 36px",
                 background: "#00d4ff",

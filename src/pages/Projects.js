@@ -2,10 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 const CATEGORIES = [
-  { id: "games", label: "Games" },
   { id: "ar", label: "AR" },
   { id: "vr", label: "VR" },
   { id: "interactive", label: "Interactive" },
+  { id: "games", label: "Games" },
   { id: "workshops", label: "Workshops" },
   { id: "websites", label: "Websites" },
 ];
@@ -31,30 +31,26 @@ const PROJECTS = [
   { id: 12, title: "Future Dice", category: "games", tags: [], year: "2021", desc: "Dice-based strategy game.", image: null, media: null, mediaType: "image" },
 
   // ── AR (Yellow highlighted) ──
-  { id: 13, title: "ADHA Mobile", category: "ar", tags: ["AR"], year: "2023", desc: "Mobile AR experience for ADHA.", image: null, media: null, mediaType: "video" },
-  { id: 14, title: "UAE Torath", category: "ar", tags: ["Activation", "AR"], year: "2023", desc: "AR activation celebrating UAE heritage and culture.", image: null, media: null, mediaType: "video" },
-  { id: 15, title: "AR Coin Hunt", category: "ar", tags: ["AR"], year: "2023", desc: "Interactive AR treasure hunt experience.", image: null, media: null, mediaType: "video" },
+  { id: 13, title: "AR Villa Visualizer", category: "ar", tags: ["AR"], year: "2023", desc: "Mobile AR experience for architecture visualization.", image: null, media: null, mediaType: "video" },
+  { id: 14, title: "UAE Torath", category: "ar", tags: ["Activation", "AR"], year: "2023", desc: "AR activation that consists of multiple images need to be collected while gathering information before playing the final game and win a prize.", image: null, media: null, mediaType: "video" },
+  { id: 15, title: "AR Coin Hunt", category: "ar", tags: ["AR"], year: "2023", desc: "Interactive AR treasure hunt experience. Go out and gather the most coins to win,  your hand is your tool.", image: null, media: null, mediaType: "video" },
 
   // ── VR (Red highlighted) ──
-  { id: 17, title: "STC - VR Project", category: "vr", tags: ["VR"], year: "2023", desc: "Immersive VR experience for STC.", image: null, media: null, mediaType: "video" },
+  { id: 17, title: "STC - VR Project", category: "vr", tags: ["VR"], year: "2023", desc: "Explore the technologies and fact about STC in a unique immersive experience while interacting with the environment.", image: null, media: null, mediaType: "video" },
   { id: 18, title: "VR 360 Videos", category: "vr", tags: ["Activation", "Gitex"], year: "2023", desc: "360-degree VR video experiences showcased at Gitex.", image: null, media: null, mediaType: "video" },
 
   // ── WEBSITES ──
-  { id: 19, title: "uaeanimestore", category: "websites", tags: [], year: "2021", desc: "E-commerce website for anime merchandise in the UAE.", image: null, media: null, mediaType: "image" },
-
-  // ── WORKSHOPS ──
-  { id: 41, title: "Game Development with Unity", category: "workshops", tags: [], year: "2024-2025", desc: "Hands-on workshop teaching children and teens how to build their first games using Unity and C#. Conducted at Sharjah Children's Reading Festival and SIBF.", image: null, media: null, mediaType: "video", featured: true },
-  { id: 42, title: "AI Visual Arts Workshop", category: "workshops", tags: [], year: "2024-2025", desc: "Creative workshop exploring AI-generated art using tools like Midjourney and Stable Diffusion. Participants learn to create characters and visual assets for their projects.", image: null, media: null, mediaType: "video", featured: true },
-  { id: 43, title: "Arduino & Electronics Workshop", category: "workshops", tags: [], year: "2024", desc: "Interactive electronics workshop where participants build working hardware projects with Arduino, sensors, and custom circuits.", image: null, media: null, mediaType: "video" },
+  { id: 19, title: "uaeanimestore", category: "websites", tags: [], year: "2021", desc: " 6 years E-commerce website for anime merchandise in the UAE. Maintained and updated regularly. ", image: null, media: null, mediaType: "image" },
 
   // ── INTERACTIVE (All other activations) ──
-  { id: 20, title: "Brain Wave Racing", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Mind-controlled racing experience using brain wave sensors.", image: null, media: null, mediaType: "video" },
+  { id: 20, title: "Brain Wave Racing", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Mind-controlled racing experience using brain wave sensors. Keep focusing to win the game.", image: null, media: null, mediaType: "video" },
   { id: 21, title: "DHA - Hand Pedal", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Custom hardware activation for Dubai Health Authority.", image: null, media: null, mediaType: "video" },
-  { id: 22, title: "DoE", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Multi-screen interactive activation with custom hardware integration.", image: null, media: null, mediaType: "video" },
-  { id: 23, title: "Football ShootOut", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Interactive football experience with motion tracking and multiple displays.", image: null, media: null, mediaType: "video" },
+  { id: 22, title: "DoE", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Explore the different buildings and units with the multi-screen interactive activation with custom hardware integration. ", image: null, media: null, mediaType: "video" },
+  { id: 23, title: "Football ShootOut", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Interactive football experience with targets appear on the screen and you need to hit them with football .", image: null, media: null, mediaType: "video" },
   
-  { id: 24, title: "STC - Saudio Arabia Series", category: "interactive", tags: ["Activation"], year: "2022-2024", desc: "A series of interactive activations delivered for STC across Saudi Arabia, including multiple installations and experiences.", image: null, media: null, mediaType: "video", featured: true },
+  { id: 24, title: "STC - Saudio Arabia Series", category: "interactive", tags: ["Activation"], year: "2022-2024", desc: "A series of 16 activations build together to have one big journey experience from creating your avatar to exploring the STC world technology and experiences", image: null, media: null, mediaType: "video", featured: true },
   
+  //maybe will delete them later since i mentioned the series above, but for now I want to keep them to show the variety of activations we did for STC
   { id: 25, title: "STC - Employer Brand", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Interactive employer branding activation for STC.", image: null, media: null, mediaType: "video" },
   { id: 26, title: "STC - Spinning Wheel", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Gamified spinning wheel activation with custom hardware.", image: null, media: null, mediaType: "gif" },
   { id: 27, title: "STC - Avatar Creator", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Interactive avatar creation station with real-time customization.", image: null, media: null, mediaType: "gif" },
@@ -69,14 +65,17 @@ const PROJECTS = [
   
   { id: 16, title: "Black Hat", category: "interactive", tags: ["Activation", "Multiple Screens"], year: "2024", desc: "Multi-screen interactive activation for Black Hat conference.", image: null, media: null, mediaType: "video" },
   
-  { id: 34, title: "NCEMA", category: "interactive", tags: ["Simulation", "Multiplayer"], year: "2023", desc: "Multi-user simulation experience for National Emergency Crisis and Disasters Management Authority.", image: null, media: null, mediaType: "video", featured: true },
+  { id: 34, title: "NCEMA", category: "interactive", tags: ["Simulation", "Multiplayer"], year: "2023", desc: "Multi-user simulation experience for a cleint. Voice chatting, screen sharing and multiple scenes while all controlled with a coordinator within the simulation.", image: null, media: null, mediaType: "video", featured: true },
   
   { id: 35, title: "DC Expo Riyad", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2024", desc: "Interactive activation for Data Center Expo in Riyadh.", image: null, media: null, mediaType: "video" },
   { id: 36, title: "Etisalat (MWC)", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Multi-screen touch and throw activation for Etisalat at Mobile World Congress.", image: null, media: null, mediaType: "video" },
   { id: 37, title: "Mubadala", category: "interactive", tags: ["Activation", "Touch Screen"], year: "2024", desc: "Touch screen interactive experience for Mubadala Investment Company.", image: null, media: null, mediaType: "video" },
   { id: 38, title: "Dolphin Energy", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Interactive multi-screen activation for Dolphin Energy.", image: null, media: null, mediaType: "video" },
   { id: 39, title: "Novo Precision", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Touch and throw interactive experience across multiple displays.", image: null, media: null, mediaType: "video" },
-  { id: 40, title: "Sadio One", category: "interactive", tags: ["Activation", "Photobooth", "Touch Screen"], year: "2024", desc: "Custom photobooth activation for Sadio One brand.", image: null, media: null, mediaType: "gif" },
+
+    // ── WORKSHOPS ──
+  { id: 40, title: "Game Development with Unity", category: "workshops", tags: [], year: "2024-2025", desc: "Hands-on workshop teaching children and teens how to build their first games using Unity and C#. Conducted at Sharjah Children's Reading Festival and SIBF.", image: null, media: null, mediaType: "video", featured: true },
+  { id: 41, title: "AI Visual Arts Workshop", category: "workshops", tags: [], year: "2024-2025", desc: "Creative workshop exploring AI-generated art using tools like chatGPT. Participants learn to create a full story comic made of 4 panels while focusing on consistency between the characters and the background environment.", image: null, media: null, mediaType: "video", featured: true },
 ];
 
 function useInView(ref) {
