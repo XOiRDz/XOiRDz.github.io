@@ -17,66 +17,391 @@ const ALL_TAGS = [
 
 const PROJECTS = [
   // ── GAMES ──
-  { id: 9, title: "Al Taibeen Restaurant", category: "games", tags: [], year: "2022", desc: "Restaurant management simulation game.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 1, title: "Count up", category: "games", tags: [], year: "2020", desc: "Mathematical game where you need to reach target in shortest time.", fullDesc: "", image: null, media: "/media/games/CountUp.gif", mediaType: "gif" },
-  { id: 2, title: "Lost Player", category: "games", tags: [], year: "2020", desc: "Fast running game with glitches as difficulty and challenege.", fullDesc: "", image: null, media: "/media/games/LostPlayer.gif", mediaType: "gif" },
-  { id: 3, title: "My Journey to Mars", category: "games", tags: [], year: "2021", desc: "Small Story game made while vision of future.", fullDesc: "", image: null, media: "/media/games/MJTM.gif", mediaType: "gif" },
-  { id: 4, title: "Space out", category: "games", tags: [], year: "2021", desc: "Protect the ship from incoming meteors.", fullDesc: "", image: null, media: "/media/games/SpaceOut.gif", mediaType: "gif" },
-  { id: 5, title: "Time Spacer", category: "games", tags: [], year: "2021", desc: "Time manipulation puzzle game.", fullDesc: "", image: null, media: "/media/games/TimeSpacer.gif", mediaType: "gif" },
-  { id: 6, title: "Unalterable", category: "games", tags: [], year: "2021", desc: "Puzzle game that requires finding clues/items to progress.", fullDesc: "", image: null, media: "/media/games/Unalterable.gif", mediaType: "gif" },
-  { id: 7, title: "Vortax", category: "games", tags: [], year: "2021", desc: "Game that speeds up with time to test player's quick response.", fullDesc: "", image: null, media: "/media/games/Vortax.gif", mediaType: "gif" },
-  { id: 8, title: "15 Puzzle", category: "games", tags: [], year: "2020", desc: "Classic sliding puzzle game reimagined.", fullDesc: "", image: null, media: null, mediaType: "image" },
-  
-  { id: 10, title: "Gates of Avalon", category: "games", tags: [], year: "2022", desc: "Fantasy adventure game.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 11, title: "Untitled Pong Game", category: "games", tags: [], year: "2020", desc: "Modern take on the classic Pong.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 12, title: "Future Dice", category: "games", tags: [], year: "2021", desc: "Dice-based strategy game.", fullDesc: "", image: null, media: null, mediaType: "image" },
+  { 
+    id: 9, 
+    title: "Al Taibeen Restaurant", 
+    category: "games", 
+    tags: [], 
+    year: "2022", 
+    desc: "Restaurant management simulation.", 
+    fullDesc: "A comprehensive restaurant management simulation game where players manage all aspects of running a restaurant including staff, inventory, customer service, and finances.",
+    link: null
+  },
+  { 
+    id: 1, 
+    title: "Count up", 
+    category: "games", 
+    tags: [], 
+    year: "2020", 
+    desc: "Mathematical challenge game.", 
+    fullDesc: "Mathematical game where you need to reach the target number in the shortest time possible using strategic number combinations and quick thinking.",
+    link: null
+  },
+  { 
+    id: 2, 
+    title: "Lost Player", 
+    category: "games", 
+    tags: [], 
+    year: "2020", 
+    desc: "Fast-paced running game.", 
+    fullDesc: "Fast running game with glitches serving as difficulty modifiers and challenges. Navigate through increasingly difficult levels while dealing with environmental glitches.",
+    link: null
+  },
+  { 
+    id: 3, 
+    title: "My Journey to Mars", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Futuristic story-driven adventure.", 
+    fullDesc: "Small story game made with a vision of the future, exploring themes of space exploration and humanity's journey to Mars through an engaging narrative.",
+    link: null
+  },
+  { 
+    id: 4, 
+    title: "Space out", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Space defense game.", 
+    fullDesc: "Protect your ship from incoming meteors in this fast-paced space survival game. Test your reflexes and strategic positioning.",
+    link: null
+  },
+  { 
+    id: 5, 
+    title: "Time Spacer", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Time manipulation puzzler.", 
+    fullDesc: "Time manipulation puzzle game where you control time itself to solve increasingly complex puzzles and navigate through challenging scenarios.",
+    link: null
+  },
+  { 
+    id: 6, 
+    title: "Unalterable", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Mystery puzzle adventure.", 
+    fullDesc: "Puzzle game that requires finding clues and items to progress through a mysterious storyline. Each discovery unlocks new areas and deeper mysteries.",
+    link: null
+  },
+  { 
+    id: 7, 
+    title: "Vortax", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Speed-based reaction game.", 
+    fullDesc: "Game that speeds up with time to test player's quick response and adaptability. How long can you survive as the pace intensifies?",
+    link: null
+  },
+  { 
+    id: 8, 
+    title: "15 Puzzle", 
+    category: "games", 
+    tags: [], 
+    year: "2020", 
+    desc: "Classic sliding puzzle.", 
+    fullDesc: "Classic sliding puzzle game reimagined with modern design and intuitive controls. Challenge yourself with different difficulty levels.",
+    link: null
+  },
+  { 
+    id: 10, 
+    title: "Gates of Avalon", 
+    category: "games", 
+    tags: [], 
+    year: "2022", 
+    desc: "Fantasy adventure game.", 
+    fullDesc: "Fantasy adventure game set in the mythical realm of Avalon. Explore ancient gates, solve mysteries, and uncover hidden treasures.",
+    link: null
+  },
+  { 
+    id: 11, 
+    title: "Untitled Pong Game", 
+    category: "games", 
+    tags: [], 
+    year: "2020", 
+    desc: "Modern Pong remake.", 
+    fullDesc: "Modern take on the classic Pong with enhanced visuals, sound effects, and new gameplay mechanics that bring fresh life to the iconic game.",
+    link: null
+  },
+  { 
+    id: 12, 
+    title: "Future Dice", 
+    category: "games", 
+    tags: [], 
+    year: "2021", 
+    desc: "Strategic dice game.", 
+    fullDesc: "Dice-based strategy game combining luck and tactical decision-making. Plan your moves carefully to outwit opponents.",
+    link: null
+  },
 
-  // ── AR (Yellow highlighted) ──
-  { id: 13, title: "AR Villa Visualizer", category: "ar", tags: ["AR"], year: "2023", desc: "Mobile AR experience for architecture visualization.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 14, title: "UAE Torath", category: "ar", tags: ["Activation", "AR"], year: "2023", desc: "Mobile AR activation, informative and engaging. For eldery people.", fullDesc: "AR activation that consists of multiple images need to be collected while gathering information before playing the final game and win a prize.", image: null, media: null, mediaType: "video" },
-  { id: 15, title: "AR Coin Hunt", category: "ar", tags: ["AR"], year: "2023", desc: "Mobile AR treasure hunt experience.", fullDesc: "Interactive AR treasure hunt experience. Go out and gather the most coins to win,  your hand is your tool.", image: null, media: null, mediaType: "video" },
+  // ── AR ──
+  { 
+    id: 13, 
+    title: "AR Villa Visualizer", 
+    category: "ar", 
+    tags: ["AR"], 
+    year: "2023", 
+    desc: "Architecture visualization in AR.", 
+    fullDesc: "Mobile AR experience for architecture visualization allowing clients to preview villa designs in real-world scale and space before construction begins.",
+    link: null
+  },
+  { 
+    id: 14, 
+    title: "UAE Torath", 
+    category: "ar", 
+    tags: ["Activation", "AR"], 
+    year: "2023", 
+    desc: "Heritage AR experience.", 
+    fullDesc: "AR activation that consists of multiple images to be collected while gathering information about UAE heritage. Users explore various heritage sites through augmented reality, collecting digital artifacts and learning about Emirati culture. The experience culminates in an interactive game where participants use their collected knowledge to win prizes.",
+    link: null
+  },
+  { 
+    id: 15, 
+    title: "AR Coin Hunt", 
+    category: "ar", 
+    tags: ["AR"], 
+    year: "2023", 
+    desc: "AR treasure hunt game.", 
+    fullDesc: "Interactive AR treasure hunt experience. Go out and gather the most coins to win - your hand is your tool. Compete with others to collect virtual coins scattered in the real world.",
+    link: null
+  },
 
-  // ── VR (Red highlighted) ──
-  { id: 17, title: "STC - VR Project", category: "vr", tags: ["VR"], year: "2023", desc: "Explore the technologies and fact about STC in a unique immersive experience while interacting with the environment.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 18, title: "VR 360 Videos", category: "vr", tags: ["Activation", "Gitex"], year: "2023", desc: "360-degree VR video experiences showcased at Gitex.", fullDesc: "", image: null, media: null, mediaType: "video" },
+  // ── VR ──
+  { 
+    id: 17, 
+    title: "STC - VR Project", 
+    category: "vr", 
+    tags: ["VR"], 
+    year: "2023", 
+    desc: "Immersive STC experience.", 
+    fullDesc: "Explore the technologies and facts about STC in a unique immersive VR experience while interacting with the virtual environment. Discover company innovations through interactive demonstrations and guided tours.",
+    link: null
+  },
+  { 
+    id: 18, 
+    title: "VR 360 Videos", 
+    category: "vr", 
+    tags: ["Activation", "Gitex"], 
+    year: "2023", 
+    desc: "360° VR experiences.", 
+    fullDesc: "360-degree VR video experiences showcased at Gitex technology conference. Immersive storytelling and virtual tours that transport viewers to different locations and scenarios.",
+    link: null
+  },
 
   // ── WEBSITES ──
-  { id: 19, title: "uaeanimestore", category: "websites", tags: [], year: "2021", desc: " 6 years E-commerce website for anime merchandise in the UAE. Maintained and updated regularly. ", fullDesc: "", image: null, media: null, mediaType: "image" },
+  { 
+    id: 19, 
+    title: "uaeanimestore", 
+    category: "websites", 
+    tags: [], 
+    year: "2021", 
+    desc: "Anime e-commerce platform.", 
+    fullDesc: "6-year-running e-commerce website for anime merchandise in the UAE. Maintained and updated regularly with new products, features, and improvements. Serves thousands of anime fans across the Emirates.",
+    link: "https://uaeanimestore.com"
+  },
 
-  // ── INTERACTIVE (All other activations) ──
-  { id: 20, title: "Brain Wave Racing", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Mind-controlled racing experience using brain wave sensors. Keep focusing to win the game.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 21, title: "DHA - Hand Pedal", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Custom hardware activation for Dubai Health Authority.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 22, title: "DoE", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Explore the different buildings and units with the multi-screen interactive activation with custom hardware integration. ", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 23, title: "Football ShootOut", category: "interactive", tags: ["Activation", "Custom Hardware", "Multiple Screens"], year: "2023", desc: "Interactive football experience with targets appear on the screen and you need to hit them with football .", fullDesc: "", image: null, media: null, mediaType: "video" },
-  
-  { id: 24, title: "STC - Saudio Arabia Series", category: "interactive", tags: ["Activation"], year: "2022-2024", desc: "A series of 16 activations build together to have one big journey experience from creating your avatar to exploring the STC world technology and experiences", fullDesc: "", image: null, media: null, mediaType: "video", featured: true },
-  
-  //maybe will delete them later since i mentioned the series above, but for now I want to keep them to show the variety of activations we did for STC
-  { id: 25, title: "STC - Employer Brand", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Interactive employer branding activation for STC.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 26, title: "STC - Spinning Wheel", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Gamified spinning wheel activation with custom hardware.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 27, title: "STC - Avatar Creator", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "Interactive avatar creation station with real-time customization.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 28, title: "STC - E-Gaming", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2023", desc: "E-sports gaming activation with custom controller integration.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  
-  { id: 29, title: "Saudi Airlines Umrah", category: "interactive", tags: ["Activation", "Touch Screen"], year: "2024", desc: "Touch screen interactive experience for Saudi Airlines Umrah services.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 30, title: "Saudi Digital Experience", category: "interactive", tags: ["Activation", "Touch Screen"], year: "2024", desc: "Interactive digital experience showcasing Saudi innovation.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  
-  { id: 31, title: "AI Photobooth", category: "interactive", tags: ["Activation", "Touch Screen", "AI", "Photobooth"], year: "2023", desc: "AI-powered photobooth generating custom edited photos with prompts and face-swap integration.", fullDesc: "", image: null, media: null, mediaType: "video", featured: true },
-  { id: 32, title: "Normal Photobooth", category: "interactive", tags: ["Activation", "Touch Screen", "AI", "Photobooth"], year: "2023", desc: "Traditional photobooth experience with instant printing.", fullDesc: "", image: null, media: null, mediaType: "gif" },
-  { id: 33, title: "Saudi Tourism Photobooth", category: "interactive", tags: ["Activation", "Photobooth", "Touch Screen"], year: "2024", desc: "Branded photobooth for Saudi Tourism Authority.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  
-  { id: 16, title: "Black Hat", category: "interactive", tags: ["Activation", "Multiple Screens"], year: "2024", desc: "Multi-screen interactive activation for Black Hat conference.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  
-  { id: 34, title: "NCEMA", category: "interactive", tags: ["Simulation", "Multiplayer"], year: "2023", desc: "Multi-user simulation experience for a cleint. Voice chatting, screen sharing and multiple scenes while all controlled with a coordinator within the simulation.", fullDesc: "", image: null, media: null, mediaType: "video", featured: true },
-  
-  { id: 35, title: "DC Expo Riyad", category: "interactive", tags: ["Activation", "Custom Hardware"], year: "2024", desc: "Interactive activation for Data Center Expo in Riyadh.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 36, title: "Etisalat (MWC)", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Multi-screen touch and throw activation for Etisalat at Mobile World Congress.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 37, title: "Mubadala", category: "interactive", tags: ["Activation", "Touch Screen"], year: "2024", desc: "Touch screen interactive experience for Mubadala Investment Company.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 38, title: "Dolphin Energy", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Interactive multi-screen activation for Dolphin Energy.", fullDesc: "", image: null, media: null, mediaType: "video" },
-  { id: 39, title: "Novo Precision", category: "interactive", tags: ["Activation", "Touch & Throw", "Multiple Screens"], year: "2024", desc: "Touch and throw interactive experience across multiple displays.", fullDesc: "", image: null, media: null, mediaType: "video" },
+  // ── INTERACTIVE ──
+  { 
+    id: 20, 
+    title: "Brain Wave Racing", 
+    category: "interactive", 
+    tags: ["Activation", "Custom Hardware"], 
+    year: "2023", 
+    desc: "Mind-controlled racing.", 
+    fullDesc: "Mind-controlled racing experience using brain wave sensors. Keep focusing to win the game. The more concentrated you are, the faster your car goes. A unique blend of gaming and neurofeedback technology.",
+    link: null
+  },
+  { 
+    id: 21, 
+    title: "DHA - Hand Pedal", 
+    category: "interactive", 
+    tags: ["Activation", "Custom Hardware"], 
+    year: "2023", 
+    desc: "Health activation for DHA.", 
+    fullDesc: "Custom hardware activation for Dubai Health Authority promoting physical activity and health awareness through an engaging hand-pedaling challenge.",
+    link: null
+  },
+  { 
+    id: 22, 
+    title: "DoE", 
+    category: "interactive", 
+    tags: ["Activation", "Custom Hardware", "Multiple Screens"], 
+    year: "2023", 
+    desc: "Multi-screen exploration.", 
+    fullDesc: "Explore the different buildings and units with this multi-screen interactive activation. Custom hardware integration allows visitors to navigate through various departments and learn about organizational structure interactively.",
+    link: null
+  },
+  { 
+    id: 23, 
+    title: "Football ShootOut", 
+    category: "interactive", 
+    tags: ["Activation", "Custom Hardware", "Multiple Screens"], 
+    year: "2023", 
+    desc: "Interactive football challenge.", 
+    fullDesc: "Interactive football experience where targets appear on multiple screens and you need to hit them with a real football. Combines physical activity with digital gaming for an engaging sports activation.",
+    link: null
+  },
+  { 
+    id: 24, 
+    title: "STC - Saudi Arabia Series", 
+    category: "interactive", 
+    tags: ["Activation"], 
+    year: "2022-2024", 
+    desc: "Comprehensive activation series.", 
+    fullDesc: "A series of 16 activations built together to create one big journey experience. From creating your avatar to exploring the STC world of technology and experiences. This large-scale project showcases the full range of STC's innovations through interconnected interactive installations.",
+    link: null,
+    featured: true
+  },
+  { 
+    id: 29, 
+    title: "Saudi Airlines Umrah", 
+    category: "interactive", 
+    tags: ["Activation", "Touch Screen"], 
+    year: "2024", 
+    desc: "Umrah services experience.", 
+    fullDesc: "Touch screen interactive experience for Saudi Airlines Umrah services. Guide pilgrims through the journey with interactive maps, information, and booking assistance.",
+    link: null
+  },
+  { 
+    id: 30, 
+    title: "Saudi Digital Experience", 
+    category: "interactive", 
+    tags: ["Activation", "Touch Screen"], 
+    year: "2024", 
+    desc: "Saudi innovation showcase.", 
+    fullDesc: "Interactive digital experience showcasing Saudi innovation, technology advancements, and Vision 2030 initiatives through engaging touch-screen interfaces.",
+    link: null
+  },
+  { 
+    id: 31, 
+    title: "AI Photobooth", 
+    category: "interactive", 
+    tags: ["Activation", "Touch Screen", "AI", "Photobooth"], 
+    year: "2023", 
+    desc: "AI-powered photo generation.", 
+    fullDesc: "AI-powered photobooth generating custom edited photos with prompts and face-swap integration. Users can transform their photos into different artistic styles, backgrounds, and character transformations using cutting-edge AI technology.",
+    link: null,
+    featured: true
+  },
+  { 
+    id: 32, 
+    title: "Normal Photobooth", 
+    category: "interactive", 
+    tags: ["Activation", "Touch Screen", "AI", "Photobooth"], 
+    year: "2023", 
+    desc: "Traditional photobooth.", 
+    fullDesc: "Traditional photobooth experience with instant printing. Classic photo strips with customizable frames and instant physical prints for events and activations.",
+    link: null
+  },
+  { 
+    id: 33, 
+    title: "Saudi Tourism Photobooth", 
+    category: "interactive", 
+    tags: ["Activation", "Photobooth", "Touch Screen"], 
+    year: "2024", 
+    desc: "Tourism branded photobooth.", 
+    fullDesc: "Branded photobooth for Saudi Tourism Authority featuring iconic Saudi landmarks as backgrounds. Visitors can take photos with AR elements showcasing tourism destinations.",
+    link: null
+  },
+  { 
+    id: 16, 
+    title: "Black Hat", 
+    category: "interactive", 
+    tags: ["Activation", "Multiple Screens"], 
+    year: "2024", 
+    desc: "Cybersecurity conference activation.", 
+    fullDesc: "Multi-screen interactive activation for Black Hat cybersecurity conference. Educational experience demonstrating security concepts through interactive challenges and visualizations.",
+    link: null
+  },
+  { 
+    id: 34, 
+    title: "NCEMA", 
+    category: "interactive", 
+    tags: ["Simulation", "Multiplayer"], 
+    year: "2023", 
+    desc: "Emergency management simulation.", 
+    fullDesc: "Multi-user simulation experience for National Emergency Crisis and Disasters Management Authority. Features voice chatting, screen sharing, and multiple scenarios all controlled by a coordinator within the simulation. Trains teams in crisis response and coordination.",
+    link: null,
+    featured: true
+  },
+  { 
+    id: 35, 
+    title: "DC Expo Riyad", 
+    category: "interactive", 
+    tags: ["Activation", "Custom Hardware"], 
+    year: "2024", 
+    desc: "Data center expo activation.", 
+    fullDesc: "Interactive activation for Data Center Expo in Riyadh showcasing data center technologies and infrastructure through hands-on demonstrations.",
+    link: null
+  },
+  { 
+    id: 36, 
+    title: "Etisalat (MWC)", 
+    category: "interactive", 
+    tags: ["Activation", "Touch & Throw", "Multiple Screens"], 
+    year: "2024", 
+    desc: "Mobile World Congress activation.", 
+    fullDesc: "Multi-screen touch and throw activation for Etisalat at Mobile World Congress. Interactive gesture-based experience showcasing telecommunications innovations.",
+    link: null
+  },
+  { 
+    id: 37, 
+    title: "Mubadala", 
+    category: "interactive", 
+    tags: ["Activation", "Touch Screen"], 
+    year: "2024", 
+    desc: "Investment company experience.", 
+    fullDesc: "Touch screen interactive experience for Mubadala Investment Company. Explore investment portfolios, company history, and global impact through intuitive touch interfaces.",
+    link: null
+  },
+  { 
+    id: 38, 
+    title: "Dolphin Energy", 
+    category: "interactive", 
+    tags: ["Activation", "Touch & Throw", "Multiple Screens"], 
+    year: "2024", 
+    desc: "Energy sector activation.", 
+    fullDesc: "Interactive multi-screen activation for Dolphin Energy. Touch and throw mechanics allow visitors to explore energy infrastructure and operations in an engaging way.",
+    link: null
+  },
+  { 
+    id: 39, 
+    title: "Novo Precision", 
+    category: "interactive", 
+    tags: ["Activation", "Touch & Throw", "Multiple Screens"], 
+    year: "2024", 
+    desc: "Precision technology showcase.", 
+    fullDesc: "Touch and throw interactive experience across multiple displays showcasing Novo Precision's advanced manufacturing and precision technology capabilities.",
+    link: null
+  },
 
-    // ── WORKSHOPS ──
-  { id: 40, title: "Game Development with Unity", category: "workshops", tags: [], year: "2024-2025", desc: "Hands-on workshop teaching children and teens how to build their first games using Unity and C#. Conducted at Sharjah Children's Reading Festival and SIBF.",  fullDesc: "", image: null, media: null, mediaType: "video", featured: true },
-  { id: 41, title: "AI Visual Arts Workshop", category: "workshops", tags: [], year: "2024-2025", desc: "Creative workshop exploring AI-generated art using tools like chatGPT. Participants learn to create a full story comic made of 4 panels while focusing on consistency between the characters and the background environment.", fullDesc: "", image: null, media: null, mediaType: "video", featured: true },
+  // ── WORKSHOPS ──
+  { 
+    id: 40, 
+    title: "Game Development with Unity", 
+    category: "workshops", 
+    tags: [], 
+    year: "2024-2025", 
+    desc: "Unity game development workshop.", 
+    fullDesc: "Hands-on workshop teaching children and teens (ages 8-20) how to build their first games using Unity and C#. Conducted at major cultural events including Sharjah Children's Reading Festival and SIBF. Participants learn game design fundamentals, coding basics, and create their own playable games.",
+    link: null,
+    featured: true
+  },
+  { 
+    id: 41, 
+    title: "AI Visual Arts Workshop", 
+    category: "workshops", 
+    tags: [], 
+    year: "2024-2025", 
+    desc: "AI art generation workshop.", 
+    fullDesc: "Creative workshop exploring AI-generated art using tools like ChatGPT and image generation AI. Participants learn to create a full story comic made of 4 panels while focusing on consistency between characters and background environments. Teaches prompt engineering, AI art techniques, and visual storytelling.",
+    link: null,
+    featured: true
+  },
 ];
 
 function useInView(ref) {
@@ -120,32 +445,27 @@ function ProjectCard({ project, index, setSelectedProject }) {
         cursor: "pointer",
       }}
     >
-      {/* Image placeholder */}
+      {/* Icon Display */}
       <div style={{
         height: 180,
         background: "rgba(0,212,255,0.04)",
         borderBottom: "1px solid rgba(0,212,255,0.1)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        position: "relative", overflow: "hidden",
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        position: "relative", 
+        overflow: "hidden",
       }}>
         <div style={{
-          fontSize: 48, opacity: 0.15,
+          fontSize: 64, 
+          opacity: hovered ? 0.25 : 0.15,
           fontFamily: "'Courier New', monospace",
           color: "#00d4ff",
+          transition: "all 0.3s",
+          textShadow: hovered ? "0 0 30px rgba(0,212,255,0.5)" : "none",
         }}>
           {categoryIcons[project.category] || "◈"}
         </div>
-        {project.image && (
-          <img src={project.image} alt={project.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-        )}
-        {!project.image && (
-          <div style={{
-            position: "absolute", bottom: 12, right: 12,
-            fontSize: 9, color: "rgba(0,212,255,0.4)", letterSpacing: 2, border: "1px solid rgba(0,212,255,0.2)", padding: "3px 8px",
-          }}>
-            ADD IMAGE
-          </div>
-        )}
         {project.featured && (
           <div style={{
             position: "absolute", top: 12, left: 12,
@@ -521,49 +841,23 @@ export default function Projects({ initialCategory = "games" }) {
               ×
             </button>
 
-            {/* Media section - Dynamic height based on content */}
+            {/* Icon Display */}
             <div style={{
-              flex: isMobile ? "0 0 40%" : "0 0 65%",
-              minHeight: isMobile ? 200 : 400,
+              padding: isMobile ? "60px 20px" : "80px 40px",
               background: "rgba(0,212,255,0.03)",
               borderBottom: "1px solid rgba(0,212,255,0.2)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              position: "relative",
-              overflow: "hidden",
+              flexDirection: "column",
+              gap: 20,
             }}>
-              {selectedProject.media ? (
-                selectedProject.mediaType === "video" ? (
-                  <video
-                    src={selectedProject.media}
-                    controls
-                    autoPlay
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                ) : selectedProject.mediaType === "gif" ? (
-                  <img
-                    src={selectedProject.media}
-                    alt={selectedProject.title}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                ) : (
-                  <img
-                    src={selectedProject.media}
-                    alt={selectedProject.title}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                )
-              ) : (
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 64, opacity: 0.15, marginBottom: 16, color: "#00d4ff" }}>
-                    {{ games: "◈", ar: "◎", vr: "⬡", interactive: "◉", workshops: "◈", websites: "◈" }[selectedProject.category]}
-                  </div>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", letterSpacing: 3 }}>
-                    MEDIA COMING SOON
-                  </div>
-                </div>
-              )}
+              <div style={{ fontSize: isMobile ? 80 : 120, opacity: 0.2, color: "#00d4ff", textShadow: "0 0 40px rgba(0,212,255,0.3)" }}>
+                {{ games: "◈", ar: "◎", vr: "⬡", interactive: "◉", workshops: "◈", websites: "◈" }[selectedProject.category]}
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", letterSpacing: 4, textTransform: "uppercase" }}>
+                {selectedProject.category}
+              </div>
             </div>
 
             {/* Content - Takes remaining space, scrollable if needed */}
@@ -633,17 +927,39 @@ export default function Projects({ initialCategory = "games" }) {
                 </div>
               )}
 
-              {/* Media type indicator */}
-              <div style={{
-                fontSize: 10,
-                color: "rgba(255,255,255,0.25)",
-                letterSpacing: 2,
-                padding: "12px 0",
-                borderTop: "1px solid rgba(0,212,255,0.1)",
-              }}>
-                MEDIA TYPE: {selectedProject.mediaType.toUpperCase()}
-                {!selectedProject.media && " — AWAITING UPLOAD"}
-              </div>
+              {/* Visit Project Button */}
+              {selectedProject.link && (
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    marginTop: 24,
+                    padding: "14px 32px",
+                    background: "#00d4ff",
+                    border: "2px solid #00d4ff",
+                    color: "#060810",
+                    fontSize: 11,
+                    letterSpacing: 3,
+                    textTransform: "uppercase",
+                    fontFamily: "'Courier New', monospace",
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    transition: "all 0.3s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#00d4ff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#00d4ff";
+                    e.currentTarget.style.color = "#060810";
+                  }}
+                >
+                  Visit Project →
+                </a>
+              )}
             </div>
           </div>
         </div>
