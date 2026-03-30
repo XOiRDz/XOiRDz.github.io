@@ -86,7 +86,7 @@ const SOCIALS = [
   { label: "GitHub", value: "github.com/XOiRDz", link: "https://github.com/XOiRDz" },
   { label: "Email", value: "a.f.bahemdan@gmail.com", link: "mailto:a.f.bahemdan@gmail.com" },
   { label: "Phone", value: "+971 54 511 7090", link: "tel:+971545117090" },
-  { label: "Portfolio Drive", value: "Google Drive Collection", link: "https://drive.google.com/your-link" },
+  { label: "Portfolio Drive", value: "Google Drive Collection", link: "https://drive.google.com/drive/folders/1-XwF3guIBGSqxJtoIV_mKfByUHIylbB9?usp=sharing" },
 ];
 
 export default function About() {
@@ -268,7 +268,7 @@ export default function About() {
               </div>
             </div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.8 }}>
-              GPA: 3.87 • Highest Honors • Dean's List
+              GPA: 3.87 • Highest Honors
             </p>
           </div>
         </AnimFadeUp>
