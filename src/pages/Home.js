@@ -1,63 +1,81 @@
 import { useState, useEffect, useRef } from "react";
 
 const PROJECT_CATEGORIES = [
-  
+  {
+    id: "games",
+    label: "Games",
+    icon: "◈",
+    desc: "Interactive games and simulations built in Unity.",
+    count: "12 Projects",
+    color: "#00d4ff",
+  },
   {
     id: "ar",
     label: "AR",
     icon: "◎",
-    desc: "Augmented Reality experiences that blend the digital and physical world.",
-    count: "Projects",
+    desc: "Augmented Reality experiences blending digital and physical.",
+    count: "3 Projects",
     color: "#00ffcc",
   },
   {
     id: "vr",
     label: "VR",
     icon: "⬡",
-    desc: "Virtual Reality environments for events, exhibitions, and interactive storytelling.",
-    count: "Projects",
+    desc: "Immersive Virtual Reality environments and experiences.",
+    count: "2 Projects",
     color: "#00aaff",
   },
   {
     id: "interactive",
-    label: "Interactive Apps",
+    label: "Interactive",
     icon: "◉",
-    desc: "Hardware integrations, AI-powered apps, and real-time interactive installations.",
-    count: "Projects",
-    color: "#00d4ff",
-  },
-  {
-    id: "games",
-    label: "Games",
-    icon: "◈",
-    desc: "Immersive 3D environments, simulations, and interactive worlds built in Unity and Blender.",
-    count: "Projects",
+    desc: "Hardware integrations, AI-powered apps, and activations.",
+    count: "21 Projects",
     color: "#00d4ff",
   },
   {
     id: "workshops",
     label: "Workshops",
     icon: "◈",
-    desc: "Educational workshops on game dev, AI art, Arduino, and creative tech for all ages.",
-    count: "Sessions",
+    desc: "Educational workshops on game dev, AI art, and creative tech.",
+    count: "2 Sessions",
     color: "#00ccff",
   },
 ];
 
-function useTypewriter(text, speed = 45) {
-  const [displayed, setDisplayed] = useState("");
+function useLoopingTypewriter(texts, typingSpeed = 80, deleteSpeed = 50, pauseDuration = 2000) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   useEffect(() => {
-    let i = 0;
-    setDisplayed("");
-    const interval = setInterval(() => {
-      if (i <= text.length) {
-        setDisplayed(text.slice(0, i));
-        i++;
-      } else clearInterval(interval);
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text]);
-  return displayed;
+    const currentText = texts[textIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayedText.length < currentText.length) {
+          setDisplayedText(currentText.slice(0, displayedText.length + 1));
+        } else {
+          // Finished typing, pause then start deleting
+          setTimeout(() => setIsDeleting(true), pauseDuration);
+        }
+      } else {
+        // Deleting
+        if (displayedText.length > 0) {
+          setDisplayedText(currentText.slice(0, displayedText.length - 1));
+        } else {
+          // Finished deleting, move to next text
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % texts.length);
+        }
+      }
+    }, isDeleting ? deleteSpeed : typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, textIndex, texts, typingSpeed, deleteSpeed, pauseDuration]);
+
+  return displayedText;
 }
 
 function useInView(ref, threshold = 0.1) {
@@ -86,7 +104,13 @@ function AnimFadeUp({ children, delay = 0, style = {} }) {
 }
 
 export default function Home({ navigateTo }) {
-  const typed = useTypewriter("Unity Dev · AR/VR Creator · Workshop Instructor");
+  const typed = useLoopingTypewriter([
+    "Unity Developer",
+    "AR/VR Creator",
+    "Game Developer",
+    "Interactive Developer",
+    "Workshop Instructor"
+  ]);
   const [hovered, setHovered] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -168,7 +192,7 @@ export default function Home({ navigateTo }) {
           <p style={{
             fontSize: "clamp(13px,1.6vw,17px)",
             color: "#00d4ff",
-            minHeight: 22,
+            minHeight: 30,
             marginBottom: 48,
             letterSpacing: 2,
           }}>
@@ -224,8 +248,8 @@ export default function Home({ navigateTo }) {
         }}>
           {[
             { num: "5+", label: "Years Exp" },
-            { num: "10+", label: "Projects" },
-            { num: "500+", label: "Students Taught" },
+            { num: "40+", label: "Projects" },
+            { num: "500+", label: "Students" },
           ].map((s) => (
             <div key={s.label} style={{ textAlign: "right" }}>
               <div style={{ fontSize: 36, fontWeight: 900, color: "#00d4ff", textShadow: "0 0 20px #00d4ff", lineHeight: 1 }}>{s.num}</div>
@@ -245,60 +269,38 @@ export default function Home({ navigateTo }) {
         </div>
       </section>
 
-      {/* ── SUMMARY ── */}
+      {/* ── ABOUT BRIEF ── */}
       <section style={{ padding: isMobile ? "80px 5vw" : "100px 10vw", background: "rgba(0,212,255,0.02)", borderTop: "1px solid rgba(0,212,255,0.08)" }}>
         <AnimFadeUp>
           <div style={{ fontSize: 10, letterSpacing: 6, color: "#00d4ff", textTransform: "uppercase", marginBottom: 8 }}>// who i am</div>
           <div style={{ width: 50, height: 2, background: "#00d4ff", boxShadow: "0 0 10px #00d4ff", marginBottom: 32 }} />
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 40 : 80, alignItems: "start" }}>
-            <div>
-              <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 900, marginBottom: 24, lineHeight: 1.1 }}>
-                Creative developer<br />
-                <span style={{ color: "#00d4ff" }}>blending tech & art</span>
-              </h2>
-              <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.9, fontSize: 15, marginBottom: 16 }}>
-                I'm a software professional with a Computer Engineering degree (3.87 GPA, Highest Honors) from the University of Sharjah.
-                I specialize in Unity, AR/VR, and interactive technologies — crafting experiences that live at the edge of the real and digital.
-              </p>
-              <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.9, fontSize: 15, marginBottom: 32 }}>
-                Beyond the screen, I've taught hundreds of students across major cultural festivals — from Sharjah Children's Reading Festival to SIBF —
-                making complex technology feel exciting and accessible to everyone.
-              </p>
-              <button
-                onClick={() => navigateTo("about")}
-                style={{
-                  background: "none", border: "none",
-                  color: "#00d4ff", fontSize: 12, letterSpacing: 3,
-                  fontFamily: "'Courier New', monospace", textTransform: "uppercase",
-                  padding: 0, display: "flex", alignItems: "center", gap: 10,
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.gap = "18px"}
-                onMouseLeave={(e) => e.currentTarget.style.gap = "10px"}
-              >
-                Full story →
-              </button>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {[
-                { label: "Primary Stack", value: "Unity · C# · AR/VR" },
-                { label: "Also fluent in", value: "React · Python · Arduino" },
-                { label: "Education", value: "B.Sc. Computer Engineering" },
-                { label: "Based in", value: "UAE 🇦🇪" },
-                { label: "Languages", value: "Arabic · English" },
-              ].map((item) => (
-                <div key={item.label} style={{
-                  display: "flex", justifyContent: "space-between",
-                  padding: "14px 0",
-                  borderBottom: "1px solid rgba(0,212,255,0.08)",
-                  flexDirection: isMobile ? "column" : "row",
-                  gap: isMobile ? 4 : 0,
-                }}>
-                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", letterSpacing: 2, textTransform: "uppercase" }}>{item.label}</span>
-                  <span style={{ fontSize: 13, color: "rgba(255,255,255,0.8)" }}>{item.value}</span>
-                </div>
-              ))}
-            </div>
+          
+          <div style={{ maxWidth: 800 }}>
+            <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 900, marginBottom: 24, lineHeight: 1.1 }}>
+              Building immersive experiences<br />
+              <span style={{ color: "#00d4ff" }}>where tech meets creativity</span>
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.9, fontSize: 15, marginBottom: 16 }}>
+              I'm a software professional with a Computer Engineering degree (3.87 GPA, Highest Honors) from the University of Sharjah.
+              I specialize in Unity, AR/VR, and interactive technologies — creating experiences that bridge the digital and physical worlds.
+            </p>
+            <p style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.9, fontSize: 15, marginBottom: 32 }}>
+              Over 5+ years, I've delivered <span style={{ color: "#00d4ff", fontWeight: 700 }}>40+ projects</span> for major brands like STC, Etisalat, and Saudi Tourism Authority, 
+              while teaching <span style={{ color: "#00d4ff", fontWeight: 700 }}>500+ students</span> at cultural festivals across the UAE.
+            </p>
+            <button
+              onClick={() => navigateTo("about")}
+              style={{
+                background: "none", border: "none",
+                color: "#00d4ff", fontSize: 12, letterSpacing: 3,
+                fontFamily: "'Courier New', monospace", textTransform: "uppercase",
+                padding: 0, display: "flex", alignItems: "center", gap: 10,
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.gap = "18px"}
+              onMouseLeave={(e) => e.currentTarget.style.gap = "10px"}
+            >
+              Learn more →
+            </button>
           </div>
         </AnimFadeUp>
       </section>
@@ -343,7 +345,7 @@ export default function Home({ navigateTo }) {
                 <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 10, letterSpacing: 1 }}>
                   {cat.label}
                 </div>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, marginBottom: 20 }}>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, marginBottom: 16 }}>
                   {cat.desc}
                 </div>
                 <div style={{
@@ -352,7 +354,7 @@ export default function Home({ navigateTo }) {
                   letterSpacing: 3,
                   transition: "color 0.3s",
                 }}>
-                  VIEW {cat.label.toUpperCase()} →
+                  {cat.count.toUpperCase()}
                 </div>
               </button>
             </AnimFadeUp>

@@ -96,10 +96,10 @@ export default function About() {
 
   const typedRoles = useLoopingTypewriter([
     "Unity Developer",
-    "AR/VR Creator", 
-    "Workshop Instructor",
+    "AR/VR Creator",
+    "Game Developer",
     "Interactive Developer",
-    "Game Designer"
+    "Workshop Instructor"
   ]);
 
   useEffect(() => {
