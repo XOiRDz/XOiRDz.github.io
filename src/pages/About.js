@@ -323,7 +323,7 @@ export default function About() {
           XOiRDz
         </div>
         <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", letterSpacing: 2 }}>
-          © 2025 ABDULLAH BADAHDAH
+          © 2026 ABDULLAH BADAHDAH
         </div>
       </footer>
     </div>

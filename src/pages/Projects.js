@@ -973,7 +973,7 @@ export default function Projects({ initialCategory = "games" }) {
         display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12,
       }}>
         <div style={{ color: "#00d4ff", fontWeight: 700, letterSpacing: 4, fontSize: 14, textShadow: "0 0 15px #00d4ff" }}>XOiRDz</div>
-        <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", letterSpacing: 2 }}>© 2025 ABDULLAH BADAHDAH</div>
+        <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", letterSpacing: 2 }}>© 2026 ABDULLAH BADAHDAH</div>
       </footer>
     </div>
   );

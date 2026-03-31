@@ -371,7 +371,7 @@ export default function Home({ navigateTo }) {
       }}>
         <div style={{ color: "#00d4ff", fontWeight: 700, letterSpacing: 4, fontSize: 14, textShadow: "0 0 15px #00d4ff" }}>XOiRDz</div>
         <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", letterSpacing: 2 }}>
-          © 2025 ABDULLAH BADAHDAH — BUILT WITH REACT
+          © 2026 ABDULLAH BADAHDAH — BUILT WITH REACT
         </div>
       </footer>
     </div>
